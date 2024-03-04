@@ -49,11 +49,16 @@ function App() {
       .reduce((total, transaction) => total + transaction.amount, 0)
       .toFixed(2);
   };
+  const calculateBalance = () => {
+    const totalIncome = calculateTotal("income");
+    const totalExpense = calculateTotal("expense");
+    return (totalIncome - -totalExpense).toFixed(2);
+  };
 
   return (
     <div className="App">
       <Header />
-      <Balance total={calculateTotal("all")} />
+      <Balance total={calculateBalance()} />
       <IncomeExpense
         income={calculateTotal("income")}
         expense={calculateTotal("expense")}
